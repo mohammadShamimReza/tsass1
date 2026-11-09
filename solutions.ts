@@ -1,4 +1,3 @@
-// Solution: 1
 const multiplyValue = (value: number, multiplier?: number): number => {
   if (multiplier === 0) {
     return value;
@@ -9,10 +8,7 @@ const multiplyValue = (value: number, multiplier?: number): number => {
   }
 };
 
-console.log(multiplyValue(10));
-console.log(multiplyValue(10, 5));
-console.log(multiplyValue(7, 0));
-// Solution: 2;
+
 
 type pInput = string | number | boolean;
 type pOut = string | number;
@@ -30,22 +26,14 @@ const processInput = (input: pInput): pOut => {
   }
 };
 
-console.log(processInput("  TypeScript  "));
-console.log(processInput(7));
-console.log(processInput(true));
-console.log(processInput(false));
 
-// Solution: 3
+
 
 const formatCoordinate = (arr: Readonly<[number, number, string]>) => {
   return `Location: ${arr[2]} (${arr[0]}, ${arr[1]})`;
 };
 
-console.log(formatCoordinate([23.81, 90.41, "Dhaka"]));
-console.log(formatCoordinate([22.35, 91.78, "Chittagong"]));
 
-
-// Solution: 4
 
 function concatenateArrays<T>(...arrays: T[][]): T[] {
   let newArr: T[] = [];
@@ -58,78 +46,76 @@ function concatenateArrays<T>(...arrays: T[][]): T[] {
 
   return newArr;
 }
-concatenateArrays(["a", "b"], ["c", "d"]);
-concatenateArrays([1, 2], [3, 4], [5]);
 
 
-// Solution: 5
 
-interface Course { 
+interface Course {
   title: string;
   students: number;
   isPublished: boolean;
 }
 
-
-function getPopularCourses(array: Course[], minStudent: number): Course[] { 
-
+function getPopularCourses(array: Course[], minStudent: number): Course[] {
   let returnArray: Course[] = [];
-  array.map((arr: Course) => { 
-    if (arr.students >= minStudent && arr.isPublished === true) { 
+  array.map((arr: Course) => {
+    if (arr.students >= minStudent && arr.isPublished === true) {
       returnArray.push(arr);
     }
-  })
+  });
   return returnArray;
 }
-const courses = [
-  { title: "TypeScript Mastery", students: 120, isPublished: true },
-  { title: "Draft Course", students: 200, isPublished: false },
-  { title: "Basic HTML", students: 45, isPublished: true },
-  { title: "Next.js Pro", students: 85, isPublished: true },
-];
-console.log(getPopularCourses(courses, 80));
 
 
-// Solution 6
 
 function pluckValues<T, K extends keyof T>(items: T[], key: K): T[K][] {
-let arr: T[K][] = [];
+  let arr: T[K][] = [];
 
-
-items.map((item) =>{// Solution 6
-
-function pluckValues<T, K extends keyof T>(items: T[], key: K): T[K][] {
-let arr: T[K][] = [];
-
-
-items.map((item) =>{
+  items.map((item) => {
     arr.push(item[key]);
-  })
+  });
 
-  return arr
-  
+  return arr;
 }
 
-const users = [
-  { id: 1, name: "Rakib", role: "Admin" },
-  { id: 2, name: "Sadia", role: "Editor" },
-  { id: 3, name: "Tariq", role: "Subscriber" },
-];
 
-console.log(pluckValues(users, "name"));
-console.log(pluckValues(users, "id"));
-    arr.push(item[key]);
-  })
 
-  return arr
-  
+
+class Employee {
+  protected name: string;
+  private baseSalary: number;
+
+  constructor(name: string, baseSalary: number) {
+    this.name = name;
+    this.baseSalary = baseSalary;
+  }
+  getDetails(): string {
+    return `Employee: ${this.name}, Base Salary: ${this.baseSalary}`;
+  }
 }
 
-const users = [
-  { id: 1, name: "Rakib", role: "Admin" },
-  { id: 2, name: "Sadia", role: "Editor" },
-  { id: 3, name: "Tariq", role: "Subscriber" },
-];
+class Manager extends Employee {
+  private department: string;
+  constructor(name: string, baseSalary: number, department: string) {
+    super(name, baseSalary);
+    this.department = department;
+  }
+  getRoleInfo(): string {
+    return `Manager of ${this.department}: ${this.name}`;
+  }
+}
 
-console.log(pluckValues(users, "name"));
-console.log(pluckValues(users, "id"));
+
+
+
+function validateAgeAsync(age: number): Promise<string> {
+  return new Promise((resolve, reject) => {
+    if (age >= 18) {
+      setTimeout(() => {
+        resolve("Access Granted");
+      }, 1000);
+    } else {
+      reject(new Error("Access Denied: Must be 18 or older"));
+    
+    }
+  });
+}
